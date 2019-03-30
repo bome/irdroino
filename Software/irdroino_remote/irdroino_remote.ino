@@ -29,6 +29,7 @@
  * 3) direct an IR remote at the IR detector
  * 4) you will see all detected IR commands, e.g.:
  *    NEC 20F0B54A
+ *    NEC REPEAT
  *    JVC LEN:16 20F0
  *    PANASONIC ADDR:5362 9164AD03
  * Note: The "blue" LED will light up when an IR signal is detected.
@@ -80,6 +81,13 @@
 
 #include <IRremote.h>
 #include <irPronto.cpp>
+#include <avr/pgmspace.h>
+
+// Use faster 115200 baud rate
+#define BAUD_RATE  (115200)
+
+// Uncomment this for using default Arduino 9600 baud rate.
+//#define BAUD_RATE  (9600)
 
 const int RECV_PIN = 2;
 const int SEND_PIN = 3;
@@ -97,7 +105,8 @@ IRsend irsend;
 
 void setup()
 {
-  Serial.begin(9600);
+  Serial.begin(BAUD_RATE);
+  while (!Serial);
   // Initialize the Orange LED pin as an output
   pinMode(orangeLedPin, OUTPUT);      
   // Initialize the "Send" push-button pin as an input
@@ -112,32 +121,45 @@ void setup()
   Serial.println(F("BOME SERIAL IR READY"));
 }
 
-//does not work:
-//#define CF(s)  (const char*)F(s)
+//wrap plain strings
 #define CF(s)  s
 
 const char* encoding2string(decode_type_t type)
 {
+  // use PROGMEM to save 122 bytes heap
+  #define ENCODING_STRING_MAX_LEN (11)
+  static char ret_val[ENCODING_STRING_MAX_LEN + 1];
+
+  #define RETURN(string) \
+  {\
+    static const char s[] PROGMEM = string; \
+    return strncpy_P(ret_val, s, ENCODING_STRING_MAX_LEN); \
+  }\
+  void // legitimate the following semicolon
+
+  // make sure that the resulting string is zero-terminated
+  ret_val[ENCODING_STRING_MAX_LEN] = 0;
   switch (type) {
-    case RC5:          return CF("RC5");
-    case RC6:          return CF("RC6");
-    case NEC:          return CF("NEC");
-    case SONY:         return CF("SONY");
-    case PANASONIC:    return CF("PANASONIC");
-    case JVC:          return CF("JVC");
-    case SAMSUNG:      return CF("SAMSUNG");
-    case WHYNTER:      return CF("WHYNTER");
-    case AIWA_RC_T501: return CF("AIWA");
-    case LG:           return CF("LG");
-    case SANYO:        return CF("SANYO");
-    case MITSUBISHI:   return CF("MITSUBISHI");
-    case DISH:         return CF("DISH");
-    case SHARP:        return CF("SHARP");
-    case DENON:        return CF("DENON");
-    case PRONTO:       return CF("PRONTO");
-    case LEGO_PF:      return CF("LEGO");
+    case RC5:          RETURN("RC5");
+    case RC6:          RETURN("RC6");
+    case NEC:          RETURN("NEC");
+    case SONY:         RETURN("SONY");
+    case PANASONIC:    RETURN("PANASONIC");
+    case JVC:          RETURN("JVC");
+    case SAMSUNG:      RETURN("SAMSUNG");
+    case WHYNTER:      RETURN("WHYNTER");
+    case AIWA_RC_T501: RETURN("AIWA");
+    case LG:           RETURN("LG");
+    case SANYO:        RETURN("SANYO");
+    case MITSUBISHI:   RETURN("MITSUBISHI");
+    case DISH:         RETURN("DISH");
+    case SHARP:        RETURN("SHARP");
+    case DENON:        RETURN("DENON");
+    case PRONTO:       RETURN("PRONTO");
+    case LEGO_PF:      RETURN("LEGO");
   }
   return NULL;
+  #undef RETURN
 }
 
 // Checks if "*received" starts with the given command.
@@ -227,8 +249,6 @@ unsigned long parseValue(const char** command, int base)
 
 void handleCommand(decode_type_t type, const char* command)
 {
-  static int toggle = 0; // The RC5/6 toggle state
-
   unsigned int address = 0;
   unsigned long value = 0;
   int bits = 32;
@@ -275,6 +295,7 @@ void handleCommand(decode_type_t type, const char* command)
   case RC5: // fall through
   case RC6:
   {
+    static int toggle = 0; // The RC5/6 toggle state
     if (!repeat)
     {
       // Flip the toggle bit for a new button press
@@ -491,7 +512,7 @@ void loop()
       }
       else if (readCharCount == SERIAL_INPUT_BUFFER_SIZE - 1)
       {
-        Serial.println(F("INPUT BUFFER OVERFLOW"));
+        Serial.println(F("ERROR: INPUT BUFFER OVERFLOW"));
       }
       readCharCount++;
     }

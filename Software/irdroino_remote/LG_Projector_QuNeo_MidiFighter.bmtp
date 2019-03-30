@@ -1,0 +1,65 @@
+; ------- Bome MIDI Translator: Signed Project File
+; ------- You can modify this file as you like, but that will invalidate
+; ------- the signature so that it cannot be opened in MT Player anymore.
+;
+[Preset.0]
+Name=QUNEO
+Active=1
+PresetSwitchIgnore=0
+DefaultInPorts=MIDA00010005QUNEO
+Name0=Left dial: Volume up
+Incoming0=MID3<Incoming Action="MIDI"><Simple Type="ControlChange"><Channel num="8"/><Value1 num="0x06"/><Value2 num="0x01"/></Simple></Incoming>
+Outgoing0=SerP<Outgoing Action="Serial Port"><Message Type="ASCII" data="NEC 20F040BF\r"/><PortAlias>Irdroino</PortAlias></Outgoing>
+Options0=Actv01Stop00OutO00
+Name1=Left dial: Volume down
+Incoming1=MID3<Incoming Action="MIDI"><Simple Type="ControlChange"><Channel num="8"/><Value1 num="0x06"/><Value2 num="0x7F"/></Simple></Incoming>
+Outgoing1=SerP<Outgoing Action="Serial Port"><Message Type="ASCII" data="NEC 20F0C03F\r"/><PortAlias>Irdroino</PortAlias></Outgoing>
+Options1=Actv01Stop00OutO00
+Name2=Left top diamond button: power
+Incoming2=MID3<Incoming Action="MIDI"><Simple Type="NoteOn"><Channel num="8"/><Value1 num="0x21"/><Value2 num="0x7F"/></Simple></Incoming>
+Outgoing2=SerP<Outgoing Action="Serial Port"><Message Type="ASCII" data="NEC 20F0B54A\r"/><PortAlias>Irdroino</PortAlias></Outgoing>
+Options2=Actv01Stop00OutO00
+Name3=Small button next to volume dial: mute
+Incoming3=MID3<Incoming Action="MIDI"><Simple Type="NoteOff"><Channel num="8"/><Value1 num="0x2D"/><Value2 num="0x00"/></Simple></Incoming>
+Outgoing3=SerP<Outgoing Action="Serial Port"><Message Type="ASCII" data="NEC 20F0906F\r"/><PortAlias>Irdroino</PortAlias></Outgoing>
+Options3=Actv01Stop00OutO00
+
+[Preset.1]
+Name=MIDI Fighter 3D
+Active=1
+PresetSwitchIgnore=0
+DefaultInPorts=MIDA0001000FMidi Fighter 3D
+Name0=Top Right 1: volume up
+Incoming0=MID3<Incoming Action="MIDI"><Simple Type="NoteOn"><Channel num="2"/><Value1 num="0x24"/><Value2 num="0x7F"/></Simple></Incoming>
+Outgoing0=SerP<Outgoing Action="Serial Port"><Message Type="ASCII" data="NEC 20F040BF\r"/><PortAlias>Irdroino</PortAlias></Outgoing>
+Options0=Actv01Stop00OutO00
+Name1=Top Right 2l: Volume down
+Incoming1=MID3<Incoming Action="MIDI"><Simple Type="NoteOn"><Channel num="2"/><Value1 num="0x28"/><Value2 num="0x7F"/></Simple></Incoming>
+Outgoing1=SerP<Outgoing Action="Serial Port"><Message Type="ASCII" data="NEC 20F0C03F\r"/><PortAlias>Irdroino</PortAlias></Outgoing>
+Options1=Actv01Stop00OutO00
+Name2=Left top: power
+Incoming2=MID3<Incoming Action="MIDI"><Simple Type="NoteOn"><Channel num="2"/><Value1 num="0x27"/><Value2 num="0x7F"/></Simple></Incoming>
+Outgoing2=SerP<Outgoing Action="Serial Port"><Message Type="ASCII" data="NEC 20F0B54A\r"/><PortAlias>Irdroino</PortAlias></Outgoing>
+Options2=Actv01Stop00OutO00
+Name3=Top Right 3: mute
+Incoming3=MID3<Incoming Action="MIDI"><Simple Type="NoteOn"><Channel num="2"/><Value1 num="0x30"/><Value2 num="0x7F"/></Simple></Incoming>
+Outgoing3=SerP<Outgoing Action="Serial Port"><Message Type="ASCII" data="NEC 20F0906F\r"/><PortAlias>Irdroino</PortAlias></Outgoing>
+Options3=Actv01Stop00OutO00
+
+[Project]
+Version=2
+Author=
+AuthorContact=
+Comments=
+AuthorWWW=
+AuthorCopyright=
+DefaultInPorts=MIDA0000
+DefaultOutPorts=MIDA0000
+
+[Serial Port Config]
+0=<Config Alias="Irdroino" BaudRate="115200" DataBits="8" Parity="None" StopBits="1"/>
+
+[Signatures]
+SigName-1=[Midi Translator Pro Internal]
+Signature-1=fCPFQJMJJbiXwRuWmG6Mnne7SW9DzYnD9UlYyCU4XYoAC8J4x4ZD4GDfLU6Rl5tKBZN71LvWnpb2eTPQB3JQjET86TI9YhDGq3PqUOylVhi4xj5yrxiiHylI5A9KPZ9PkFYjuOzUKk77t9YYgWFwGFXO4X19wifAWoYSN+n8LmQ=
+SignedBy-1=Florian
