@@ -9,19 +9,19 @@ PresetSwitchIgnore=0
 DefaultInPorts=MIDA00010005QUNEO
 Name0=Left dial: Volume up
 Incoming0=MID3<Incoming Action="MIDI"><Simple Type="ControlChange"><Channel num="8"/><Value1 num="0x06"/><Value2 num="0x01"/></Simple></Incoming>
-Outgoing0=SerP<Outgoing Action="Serial Port"><Message Type="ASCII" data="NEC 20F040BF\r"/><PortAlias>Irdroino</PortAlias></Outgoing>
+Outgoing0=Tim0TimS0009Volume Up1:0:1
 Options0=Actv01Stop00OutO00
 Name1=Left dial: Volume down
 Incoming1=MID3<Incoming Action="MIDI"><Simple Type="ControlChange"><Channel num="8"/><Value1 num="0x06"/><Value2 num="0x7F"/></Simple></Incoming>
-Outgoing1=SerP<Outgoing Action="Serial Port"><Message Type="ASCII" data="NEC 20F0C03F\r"/><PortAlias>Irdroino</PortAlias></Outgoing>
+Outgoing1=Tim0TimS000BVolume Down1:0:1
 Options1=Actv01Stop00OutO00
 Name2=Left top diamond button: power
 Incoming2=MID3<Incoming Action="MIDI"><Simple Type="NoteOn"><Channel num="8"/><Value1 num="0x21"/><Value2 num="0x7F"/></Simple></Incoming>
-Outgoing2=SerP<Outgoing Action="Serial Port"><Message Type="ASCII" data="NEC 20F0B54A\r"/><PortAlias>Irdroino</PortAlias></Outgoing>
+Outgoing2=Tim0TimS0005Power1:0:1
 Options2=Actv01Stop00OutO00
 Name3=Small button next to volume dial: mute
-Incoming3=MID3<Incoming Action="MIDI"><Simple Type="NoteOff"><Channel num="8"/><Value1 num="0x2D"/><Value2 num="0x00"/></Simple></Incoming>
-Outgoing3=SerP<Outgoing Action="Serial Port"><Message Type="ASCII" data="NEC 20F0906F\r"/><PortAlias>Irdroino</PortAlias></Outgoing>
+Incoming3=MID3<Incoming Action="MIDI"><Simple Type="NoteOn"><Channel num="8"/><Value1 num="0x2D"/><Value2 num="0x00"/></Simple></Incoming>
+Outgoing3=Tim0TimS0004Mute1:0:1
 Options3=Actv01Stop00OutO00
 
 [Preset.1]
@@ -31,20 +31,70 @@ PresetSwitchIgnore=0
 DefaultInPorts=MIDA0001000FMidi Fighter 3D
 Name0=Top Right 1: volume up
 Incoming0=MID3<Incoming Action="MIDI"><Simple Type="NoteOn"><Channel num="2"/><Value1 num="0x24"/><Value2 num="0x7F"/></Simple></Incoming>
-Outgoing0=SerP<Outgoing Action="Serial Port"><Message Type="ASCII" data="NEC 20F040BF\r"/><PortAlias>Irdroino</PortAlias></Outgoing>
+Outgoing0=Tim0TimS0009Volume Up1:0:1
 Options0=Actv01Stop00OutO00
-Name1=Top Right 2l: Volume down
+Name1=Top Right 2: Volume down
 Incoming1=MID3<Incoming Action="MIDI"><Simple Type="NoteOn"><Channel num="2"/><Value1 num="0x28"/><Value2 num="0x7F"/></Simple></Incoming>
-Outgoing1=SerP<Outgoing Action="Serial Port"><Message Type="ASCII" data="NEC 20F0C03F\r"/><PortAlias>Irdroino</PortAlias></Outgoing>
+Outgoing1=Tim0TimS000BVolume Down1:0:1
 Options1=Actv01Stop00OutO00
-Name2=Left top: power
-Incoming2=MID3<Incoming Action="MIDI"><Simple Type="NoteOn"><Channel num="2"/><Value1 num="0x27"/><Value2 num="0x7F"/></Simple></Incoming>
-Outgoing2=SerP<Outgoing Action="Serial Port"><Message Type="ASCII" data="NEC 20F0B54A\r"/><PortAlias>Irdroino</PortAlias></Outgoing>
+Name2=Top Right 1: repeat ON
+Incoming2=MID3<Incoming Action="MIDI"><Simple Type="NoteOn"><Channel num="2"/><Value1 num="0x24"/><Value2 num="0x7F"/></Simple></Incoming>
+Outgoing2=Tim0TimS000ANEC Repeat0:500:80
 Options2=Actv01Stop00OutO00
-Name3=Top Right 3: mute
-Incoming3=MID3<Incoming Action="MIDI"><Simple Type="NoteOn"><Channel num="2"/><Value1 num="0x30"/><Value2 num="0x7F"/></Simple></Incoming>
-Outgoing3=SerP<Outgoing Action="Serial Port"><Message Type="ASCII" data="NEC 20F0906F\r"/><PortAlias>Irdroino</PortAlias></Outgoing>
+Name3=Top Right 2: repeat ON
+Incoming3=MID3<Incoming Action="MIDI"><Simple Type="NoteOn"><Channel num="2"/><Value1 num="0x28"/><Value2 num="0x7F"/></Simple></Incoming>
+Outgoing3=Tim0TimS000ANEC Repeat0:500:80
 Options3=Actv01Stop00OutO00
+Name4=Top Right 1: repeat OFF
+Incoming4=MID3<Incoming Action="MIDI"><Simple Type="NoteOff"><Channel num="2"/><Value1 num="0x24"/><Value2 num="0x7F"/></Simple></Incoming>
+Outgoing4=Tim0TimK000ANEC Repeat
+Options4=Actv01Stop00OutO00
+Name5=Top Right 2: repeat OFF
+Incoming5=MID3<Incoming Action="MIDI"><Simple Type="NoteOff"><Channel num="2"/><Value1 num="0x28"/><Value2 num="0x7F"/></Simple></Incoming>
+Outgoing5=Tim0TimK000ANEC Repeat
+Options5=Actv01Stop00OutO00
+Name6=Left top: power
+Incoming6=MID3<Incoming Action="MIDI"><Simple Type="NoteOn"><Channel num="2"/><Value1 num="0x27"/><Value2 num="0x7F"/></Simple></Incoming>
+Outgoing6=Tim0TimS0005Power1:0:1
+Options6=Actv01Stop00OutO00
+Name7=Top Right 3: mute
+Incoming7=MID3<Incoming Action="MIDI"><Simple Type="NoteOn"><Channel num="2"/><Value1 num="0x30"/><Value2 num="0x7F"/></Simple></Incoming>
+Outgoing7=Tim0TimS0004Mute1:0:1
+Options7=Actv01Stop00OutO00
+
+[Preset.2]
+Name=LG PF1500G
+Active=1
+PresetSwitchIgnore=0
+Name0=Volume up
+Incoming0=Tim0TimT0009Volume Up
+Outgoing0=SerP<Outgoing Action="Serial Port"><Message Type="ASCII" data="NEC1 4,15,2\r"/><PortAlias>Irdroino</PortAlias></Outgoing>
+Options0=Actv01Stop00OutO00
+Name1=Volume down
+Incoming1=Tim0TimT000BVolume Down
+Outgoing1=SerP<Outgoing Action="Serial Port"><Message Type="ASCII" data="NEC1 4,15,3\r"/><PortAlias>Irdroino</PortAlias></Outgoing>
+Options1=Actv01Stop00OutO00
+Name2=Power
+Incoming2=Tim0TimT0005Power
+Outgoing2=SerP<Outgoing Action="Serial Port"><Message Type="ASCII" data="NEC1 4,15,173\r"/><PortAlias>Irdroino</PortAlias></Outgoing>
+Options2=Actv01Stop00OutO00
+Name3=Mute
+Incoming3=Tim0TimT0004Mute
+Outgoing3=SerP<Outgoing Action="Serial Port"><Message Type="ASCII" data="NEC1 4,15,9\r"/><PortAlias>Irdroino</PortAlias></Outgoing>
+Options3=Actv01Stop00OutO00
+
+[Preset.3]
+Name=REPEAT
+Active=1
+PresetSwitchIgnore=0
+Name0=Send NEC REPEAT code
+Incoming0=Tim0TimT000ANEC Repeat
+Outgoing0=SerP<Outgoing Action="Serial Port"><Message Type="ASCII" data="NEC1 REPEAT\r"/><PortAlias>Irdroino</PortAlias></Outgoing>
+Options0=Actv01Stop00OutO00
+Name1=Stop repeat timer on any Note Off
+Incoming1=MID3<Incoming Action="MIDI"><Simple Type="NoteOff"><Channel num="0" Type="Any"/><Value1 num="0x00" Type="Any"/><Value2 num="0x00" Type="Any"/></Simple></Incoming>
+Outgoing1=Tim0TimK000ANEC Repeat
+Options1=Actv00Stop00OutO01
 
 [Project]
 Version=2
@@ -61,5 +111,5 @@ DefaultOutPorts=MIDA0000
 
 [Signatures]
 SigName-1=[Midi Translator Pro Internal]
-Signature-1=fCPFQJMJJbiXwRuWmG6Mnne7SW9DzYnD9UlYyCU4XYoAC8J4x4ZD4GDfLU6Rl5tKBZN71LvWnpb2eTPQB3JQjET86TI9YhDGq3PqUOylVhi4xj5yrxiiHylI5A9KPZ9PkFYjuOzUKk77t9YYgWFwGFXO4X19wifAWoYSN+n8LmQ=
+Signature-1=UzNqbFT2GqKAAMs/6JSIHKI93gyRxtu8M63Ae5kQe3zJ2oN6DJHN9p7Lj7dhCzfN7qP11QKKcPuPSeU+PnZtH2ayU4tZELBDoY/CWKwq53pMa1vjJHbtmM8M9q8eJyKbEuqNmqAS8WYbwCUKEl0qAjdExvXPdJlAE0OsdVnt9Fs=
 SignedBy-1=Florian
