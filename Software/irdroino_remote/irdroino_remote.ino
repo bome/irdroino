@@ -53,13 +53,6 @@
  *   0016 0041 0016 0041 0016 0041 0016 0016 0016 0041 0016
  *   0041 0016 0041 0016 0041 0016 05F7 015B 0057 0016 0E6C
  * 
- * NB PRONTO: the IRremote implementation does not seem to work.
- *            Therefore, this sketch also includes the demo code
- *            from irdroino for sending PRONTO. For that, you 
- *            need to connect pin 9 and pin 3 with a jumper wire.
- *            You can define USE_IRREMOTE_PRONTO below for using
- *            the IRremote code.
- * 
  * The "orange" LED will light up when a command is sent.
  * 
  * 
@@ -86,10 +79,15 @@
  * on the computer.
  */
 
-// If the following is defined, sending PRONTO is done via the IRremote lib.
-// Otherwise, the code from pronto_usb_ir_blaster.ino is used, and you need to
-// make a jumper wire connection between pin 9 and pin 3.
-//#define USE_IRREMOTE_PRONTO
+// If the following is defined (default), sending PRONTO is done 
+// via the IRremote lib, which requires the patched/fixed 
+// Arduino-IRremote library from:
+// https://github.com/bome/Arduino-IRremote
+//
+// Otherwise, if not defined, the code from pronto_usb_ir_blaster.ino 
+// is used (included at bottom), and you need to make a jumper wire 
+// connection between pin 9 and pin 3.
+#define USE_IRREMOTE_PRONTO
 
 #include <IRremote.h>
 #include <avr/pgmspace.h>
@@ -340,7 +338,7 @@ unsigned long parseValue(const char** value, int base)
 void handleProntoCommand(const char* command)
 {
   digitalWrite(orangeLedPin, HIGH);
-  if (!irsend.sendPronto((char*)command, PRONTO_REPEAT, PRONTO_FALLBACK))
+  if (!irsend.sendPronto((char*)command, PRONTO_ONCE, PRONTO_FALLBACK))
   {
     Serial.println(F("ERROR PRONTO"));
   }
