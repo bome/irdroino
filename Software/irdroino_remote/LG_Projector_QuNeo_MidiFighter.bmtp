@@ -29,38 +29,46 @@ Name=MIDI Fighter 3D
 Active=1
 PresetSwitchIgnore=0
 DefaultInPorts=MIDA0001000FMidi Fighter 3D
-Name0=Top Right 1: volume up
-Incoming0=MID3<Incoming Action="MIDI"><Simple Type="NoteOn"><Channel num="2"/><Value1 num="0x24"/><Value2 num="0x7F"/></Simple></Incoming>
-Outgoing0=Tim0TimS0009Volume Up1:0:1
-Options0=Actv01Stop00OutO00
-Name1=Top Right 2: Volume down
-Incoming1=MID3<Incoming Action="MIDI"><Simple Type="NoteOn"><Channel num="2"/><Value1 num="0x28"/><Value2 num="0x7F"/></Simple></Incoming>
-Outgoing1=Tim0TimS000BVolume Down1:0:1
-Options1=Actv01Stop00OutO00
-Name2=Top Right 1: repeat ON
+Name0=Filter out erronous Notes
+Incoming0=MID3<Incoming Action="MIDI"><Simple Type="NoteOn"><Channel num="0"/><Value1 num="0x1D"/><Value2 num="0x00" Type="Any"/></Simple></Incoming>
+Outgoing0=None
+Options0=Actv01Stop01OutO00
+Name1=Filter out erronous Notes
+Incoming1=MID3<Incoming Action="MIDI"><Simple Type="NoteOff"><Channel num="0"/><Value1 num="0x1D"/><Value2 num="0x00" Type="Any"/></Simple></Incoming>
+Outgoing1=None
+Options1=Actv01Stop01OutO00
+Name2=Top Right 1: volume up
 Incoming2=MID3<Incoming Action="MIDI"><Simple Type="NoteOn"><Channel num="2"/><Value1 num="0x24"/><Value2 num="0x7F"/></Simple></Incoming>
-Outgoing2=Tim0TimS000ANEC Repeat0:500:80
+Outgoing2=Tim0TimS0009Volume Up1:0:1
 Options2=Actv01Stop00OutO00
-Name3=Top Right 2: repeat ON
+Name3=Top Right 2: Volume down
 Incoming3=MID3<Incoming Action="MIDI"><Simple Type="NoteOn"><Channel num="2"/><Value1 num="0x28"/><Value2 num="0x7F"/></Simple></Incoming>
-Outgoing3=Tim0TimS000ANEC Repeat0:500:80
+Outgoing3=Tim0TimS000BVolume Down1:0:1
 Options3=Actv01Stop00OutO00
-Name4=Top Right 1: repeat OFF
-Incoming4=MID3<Incoming Action="MIDI"><Simple Type="NoteOff"><Channel num="2"/><Value1 num="0x24"/><Value2 num="0x7F"/></Simple></Incoming>
-Outgoing4=Tim0TimK000ANEC Repeat
+Name4=Top Right 1: repeat ON
+Incoming4=MID3<Incoming Action="MIDI"><Simple Type="NoteOn"><Channel num="2"/><Value1 num="0x24"/><Value2 num="0x7F"/></Simple></Incoming>
+Outgoing4=Tim0TimS000ANEC Repeat0:500:150
 Options4=Actv01Stop00OutO00
-Name5=Top Right 2: repeat OFF
-Incoming5=MID3<Incoming Action="MIDI"><Simple Type="NoteOff"><Channel num="2"/><Value1 num="0x28"/><Value2 num="0x7F"/></Simple></Incoming>
-Outgoing5=Tim0TimK000ANEC Repeat
+Name5=Top Right 2: repeat ON
+Incoming5=MID3<Incoming Action="MIDI"><Simple Type="NoteOn"><Channel num="2"/><Value1 num="0x28"/><Value2 num="0x7F"/></Simple></Incoming>
+Outgoing5=Tim0TimS000ANEC Repeat0:500:150
 Options5=Actv01Stop00OutO00
-Name6=Left top: power
-Incoming6=MID3<Incoming Action="MIDI"><Simple Type="NoteOn"><Channel num="2"/><Value1 num="0x27"/><Value2 num="0x7F"/></Simple></Incoming>
-Outgoing6=Tim0TimS0005Power1:0:1
+Name6=Top Right 1: repeat OFF
+Incoming6=MID3<Incoming Action="MIDI"><Simple Type="NoteOff"><Channel num="2"/><Value1 num="0x24"/><Value2 num="0x7F"/></Simple></Incoming>
+Outgoing6=Tim0TimK000ANEC Repeat
 Options6=Actv01Stop00OutO00
-Name7=Top Right 3: mute
-Incoming7=MID3<Incoming Action="MIDI"><Simple Type="NoteOn"><Channel num="2"/><Value1 num="0x30"/><Value2 num="0x7F"/></Simple></Incoming>
-Outgoing7=Tim0TimS0004Mute1:0:1
+Name7=Top Right 2: repeat OFF
+Incoming7=MID3<Incoming Action="MIDI"><Simple Type="NoteOff"><Channel num="2"/><Value1 num="0x28"/><Value2 num="0x7F"/></Simple></Incoming>
+Outgoing7=Tim0TimK000ANEC Repeat
 Options7=Actv01Stop00OutO00
+Name8=Left top: power
+Incoming8=MID3<Incoming Action="MIDI"><Simple Type="NoteOn"><Channel num="2"/><Value1 num="0x27"/><Value2 num="0x7F"/></Simple></Incoming>
+Outgoing8=Tim0TimS0005Power1:0:1
+Options8=Actv01Stop00OutO00
+Name9=Top Right 3: mute
+Incoming9=MID3<Incoming Action="MIDI"><Simple Type="NoteOn"><Channel num="2"/><Value1 num="0x30"/><Value2 num="0x7F"/></Simple></Incoming>
+Outgoing9=Tim0TimS0004Mute1:0:1
+Options9=Actv01Stop00OutO00
 
 [Preset.2]
 Name=LG PF1500G
@@ -111,5 +119,5 @@ DefaultOutPorts=MIDA0000
 
 [Signatures]
 SigName-1=[Midi Translator Pro Internal]
-Signature-1=UzNqbFT2GqKAAMs/6JSIHKI93gyRxtu8M63Ae5kQe3zJ2oN6DJHN9p7Lj7dhCzfN7qP11QKKcPuPSeU+PnZtH2ayU4tZELBDoY/CWKwq53pMa1vjJHbtmM8M9q8eJyKbEuqNmqAS8WYbwCUKEl0qAjdExvXPdJlAE0OsdVnt9Fs=
+Signature-1=qe6z5MQWlIg0MdFjqOJxKm+Yar3W1uZS1m1sQknCqAdJohIfgEky8tLhwdtanwbSTjGGUSiajZeZyquTGNAoQZKE/libgWBZcqN/2r47FvtHGlnvsQlo2fjAtph54FN20JPGSo4T107tH8nBFQByIuds1ItbKfmDLd8KW6Cq0eY=
 SignedBy-1=Florian
